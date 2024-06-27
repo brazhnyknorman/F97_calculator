@@ -1,6 +1,10 @@
-let firstNum = prompt('Enter a') * 1;
-let secondNum = prompt('Enter b') * 1;
+let firstNum = null;
+let secondNum = null;
 let operator = null;
+
+const body = document.querySelector("body");
+
+let userDisplay = [];
 
 function operate(a, operator, b) {
   function add(a, b) {
