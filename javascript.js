@@ -2,6 +2,7 @@ let firstNum = null;
 let secondNum = null;
 let operator = null;
 let displayText = [];
+let divideByZero = false;
 
 const body = document.querySelector("body");
 const buttons = addEventsToButtons();
@@ -64,7 +65,12 @@ function updateDisplay() {
   let temp = "" + firstNum + " " + operator + " " + secondNum;
   temp = temp.replace(/ null/g, '');
 
-  displayScreen.textContent = temp;
+  if (divideByZero == false) {
+    displayScreen.textContent = temp;
+  } else if (divideByZero == true) {
+    displayScreen.textContent = "Nice try.";
+    divideByZero = false;
+  }
 }
 
 function considerInput(newElement) {
@@ -109,6 +115,10 @@ function considerInput(newElement) {
       console.log("secondNum: " + secondNum);
     }
   }
+
+  if (divideByZero == true) {
+    operator = null;
+  }
 }
 
 function operate(a, mode, b) {
@@ -129,8 +139,13 @@ function operate(a, mode, b) {
       result = product;
       break;
     case 'divide':
-      const quotient = divide(a, b);
-      result = quotient;
+      if (!(b === 0)) {
+        const quotient = divide(a, b);
+        result = quotient;
+      } else {
+        result = null;
+        divideByZero = true;
+      }
       break;
     case 'equals':
       result = a;
