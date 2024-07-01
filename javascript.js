@@ -26,7 +26,7 @@ function addEventsToButtons() {
     result[i] = document.querySelector(`#btn${i+1}`);
   
     result[i].addEventListener('click', function(onClick) {
-      updateDisplay(temp);
+      considerInput(temp);
     });
   }
 
@@ -40,7 +40,7 @@ function addEventsToButtons() {
       })
     } else {
       result[i].addEventListener('click', function(onClick) {
-        updateDisplay(temp);
+        considerInput(temp);
       })
     }
   }
@@ -56,7 +56,11 @@ function clear() {
   displayScreen.textContent = "0";
 }
 
-function updateDisplay(newElement) {
+function updateDisplay() {
+  
+}
+
+function considerInput(newElement) {
   const inputIsNum = (typeof newElement === "number")
   const inputComplete = null;
 
@@ -90,7 +94,11 @@ function updateDisplay(newElement) {
     }
     else {
       operate(firstNum, operator, secondNum);
-      console.log('evaluate!');
+      operator = newElement;
+
+      console.log("firstNum: " + firstNum);
+      console.log("operator: " + operator);
+      console.log("secondNum: " + secondNum);
     }
   }
 
@@ -103,43 +111,58 @@ function updateDisplay(newElement) {
 
 function operate(a, mode, b) {
 
+  let result = null;
+
   switch (mode) {
     case 'add':
-      const result = add(a, b)
+      const sum = add(a, b);
+      result = sum;
       break;
     case 'subtract':
+      const difference = subtract(a, b);
+      result = difference;
       break;
     case 'multiply':
+      const product = multiply(a, b);
+      result = product;
       break;
     case 'divide':
+      const quotient = divide(a, b);
+      result = quotient;
       break;
   
     default:
       break;
   }
 
+  adjustDisplay(result);
+
+  function adjustDisplay(result) {
+    firstNum = result;
+    /* operator updated in line 93*/
+    secondNum = null;
+    displayText = [];
+    displayScreen.textContent = "" + firstNum;
+  }
+
   function add(a, b) {
     let sum = a + b;
   
-    console.log(sum);
     return sum;
   }
 
   function subtract(a, b) {
     let result = a - b;
-    console.log(result);
     return result;
   }
 
   function multiply(a, b) {
     let product = a * b;
-    console.log(product);
     return product;
   }
 
   function divide(a, b) {
     let result = a / b;
-    console.log(result);
     return result;
   }
 }
