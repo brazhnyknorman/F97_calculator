@@ -95,7 +95,7 @@ function considerInput(newElement) {
     else if (inputIsNum) {
       secondNum = "".concat(secondNum, newElement);
     }
-    else {
+    else if (!(secondNum == null)) {
       operate(firstNum, operator, secondNum);
       
       if (newElement === 'equals') {
