@@ -3,12 +3,11 @@ let secondNum = null;
 let operator = null;
 
 const body = document.querySelector("body");
+const buttons = addEventsToButtons();
 
 const displayScreen = document.querySelector(".display");
 const initialDisplay = "Please Enter A Calculation";
 displayScreen.textContent = initialDisplay;
-
-const buttons = addEventsToButtons();
 
 let displayText = [];
 
@@ -32,10 +31,11 @@ function addEventsToButtons() {
   ];
 
   for (let i = 0; i <= 8; i++) {
+    let temp = i + 1;
     result[i] = document.querySelector(`#btn${i+1}`);
   
     result[i].addEventListener('click', function(onClick) {
-      console.log(i+1);
+      updateDisplay(temp);
     });
   }
 
@@ -44,29 +44,49 @@ function addEventsToButtons() {
     result[i] = document.querySelector(`#${result[i]}`)
 
     result[i].addEventListener('click', function(onClick) {
-      console.log(temp);
+      updateDisplay(temp);
     })
   }
 
+  return result;
+}
 
+function updateDisplay(newElement) {
+  const inputIsNum = (typeof newElement === "number")
 
-  /*
-
-  let calculatorFunctions = ['+', '-', 'x', '÷', '=', 'clear'];
-  
-  for (let i = 1; i <= 9; i++) {
-    buttons[i] = document.querySelector(`#btn${i}`);
-  
-    buttons[i].addEventListener('click', function(onClick) {
-      console.log(i);
-    });
+  if (firstNum == null && inputIsNum) {
+    firstNum = newElement;
+    console.log(firstNum);
+    console.log('init firstNum');
+  }
+  else if (!(firstNum == null) && operator == null) {
+    if (inputIsNum) {
+      firstNum = "".concat(firstNum, newElement);
+      console.log(firstNum);
+      console.log('more on firstNum');
+    }
+    else {
+      operator = newElement;
+      console.log(operator);
+      console.log('init operator');
+    }
+  }
+  else if (!(firstNum == null) && !(operator == null)) {
+    if (inputIsNum && secondNum == null) {
+      secondNum = newElement;
+      console.log(secondNum);
+      console.log('init secondNum');
+    }
+    console.log('hi!');
   }
 
-  calculatorFunctions.forEach(button => {
-    
-  });
-  */
-  return result;
+
+
+  displayText.push(newElement);
+
+  temp = displayText.toString().replace(/,/g, '');
+
+  displayScreen.textContent = temp;
 }
 
 function operate(a, operator, b) {
