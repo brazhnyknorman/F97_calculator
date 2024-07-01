@@ -1,6 +1,7 @@
 let firstNum = null;
 let secondNum = null;
 let operator = null;
+let displayText = [];
 
 const body = document.querySelector("body");
 const buttons = addEventsToButtons();
@@ -8,16 +9,6 @@ const buttons = addEventsToButtons();
 const displayScreen = document.querySelector(".display");
 const initialDisplay = "Please Enter A Calculation";
 displayScreen.textContent = initialDisplay;
-
-let displayText = [];
-
-/* EVENT LISTENERS */
-
-displayScreen.addEventListener('click', function(onClick) {
-
-});
-
-
 
 /* FUNCTIONS */
 
@@ -43,16 +34,31 @@ function addEventsToButtons() {
     let temp = result[i];
     result[i] = document.querySelector(`#${result[i]}`)
 
-    result[i].addEventListener('click', function(onClick) {
-      updateDisplay(temp);
-    })
+    if (temp === "clear") {
+      result[i].addEventListener('click', function(onClick) {
+        clear();
+      })
+    } else {
+      result[i].addEventListener('click', function(onClick) {
+        updateDisplay(temp);
+      })
+    }
   }
 
   return result;
 }
 
+function clear() {
+  firstNum = null;
+  operator = null;
+  secondNum = null;
+  displayText = [];
+  displayScreen.textContent = "0";
+}
+
 function updateDisplay(newElement) {
   const inputIsNum = (typeof newElement === "number")
+  const inputComplete = null;
 
   if (firstNum == null && inputIsNum) {
     firstNum = newElement;
@@ -71,13 +77,17 @@ function updateDisplay(newElement) {
       console.log('init operator');
     }
   }
-  else if (!(firstNum == null) && !(operator == null)) {
-    if (inputIsNum && secondNum == null) {
+  else if (!(firstNum == null) && !(operator == null) && inputIsNum) {
+    if (secondNum == null) {
       secondNum = newElement;
       console.log(secondNum);
       console.log('init secondNum');
     }
-    console.log('hi!');
+    else {
+      secondNum = "".concat(secondNum, newElement);
+      console.log(secondNum);
+      console.log('more on secondNum');
+    }
   }
 
 
