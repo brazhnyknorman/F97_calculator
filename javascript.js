@@ -27,6 +27,7 @@ function addEventsToButtons() {
   
     result[i].addEventListener('click', function(onClick) {
       considerInput(temp);
+      updateDisplay(temp);
     });
   }
 
@@ -37,10 +38,12 @@ function addEventsToButtons() {
     if (temp === "clear") {
       result[i].addEventListener('click', function(onClick) {
         clear();
+        updateDisplay(temp);
       })
     } else {
       result[i].addEventListener('click', function(onClick) {
         considerInput(temp);
+        updateDisplay(temp);
       })
     }
   }
@@ -56,8 +59,11 @@ function clear() {
   displayScreen.textContent = "0";
 }
 
-function updateDisplay() {
-  
+function updateDisplay(newElement) {
+  let temp = "" + firstNum + " " + operator + " " + secondNum;
+  temp = temp.replace(/ null/g, '');
+
+  displayScreen.textContent = temp;
 }
 
 function considerInput(newElement) {
@@ -79,6 +85,10 @@ function considerInput(newElement) {
       operator = newElement;
       console.log(operator);
       console.log('init operator');
+
+      if (operator === 'equals') {
+        
+      }
     }
   }
   else if (!(firstNum == null) && !(operator == null)) {
@@ -101,12 +111,6 @@ function considerInput(newElement) {
       console.log("secondNum: " + secondNum);
     }
   }
-
-  displayText.push(newElement);
-
-  temp = displayText.toString().replace(/,/g, '');
-
-  displayScreen.textContent = temp;
 }
 
 function operate(a, mode, b) {
@@ -142,7 +146,6 @@ function operate(a, mode, b) {
     /* operator updated in line 93*/
     secondNum = null;
     displayText = [];
-    displayScreen.textContent = "" + firstNum;
   }
 
   function add(a, b) {
