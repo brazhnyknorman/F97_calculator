@@ -68,23 +68,16 @@ function updateDisplay() {
 
 function considerInput(newElement) {
   const inputIsNum = (typeof newElement === "number")
-  const inputComplete = null;
 
   if (firstNum == null && inputIsNum) {
     firstNum = newElement;
-    console.log(firstNum);
-    console.log('init firstNum');
   }
   else if (!(firstNum == null) && operator == null) {
     if (inputIsNum) {
       firstNum = "".concat(firstNum, newElement);
-      console.log(firstNum);
-      console.log('more on firstNum');
     }
     else {
       operator = newElement;
-      console.log(operator);
-      console.log('init operator');
 
       if (operator === 'equals') {
         operate(firstNum, operator, null);
@@ -97,13 +90,9 @@ function considerInput(newElement) {
   else if (!(firstNum == null) && !(operator == null)) {
     if (secondNum == null && inputIsNum) {
       secondNum = newElement;
-      console.log(secondNum);
-      console.log('init secondNum');
     }
     else if (inputIsNum) {
       secondNum = "".concat(secondNum, newElement);
-      console.log(secondNum);
-      console.log('more on secondNum');
     }
     else {
       operate(firstNum, operator, secondNum);
@@ -153,7 +142,7 @@ function operate(a, mode, b) {
 
   function adjustDisplay(result) {
     firstNum = result;
-    /* operator updated in line 93*/
+    /* operator updated in line 100*/
     secondNum = null;
     displayText = [];
   }
