@@ -14,6 +14,7 @@ displayScreen.textContent = initialDisplay;
 
 function addEventsToButtons() {
   let result = [
+    'btn0', 
     'btn1', 'btn2', 'btn3',
     'btn4', 'btn5', 'btn6', 
     'btn7', 'btn8', 'btn9',
@@ -21,9 +22,9 @@ function addEventsToButtons() {
     'clear'
   ];
 
-  for (let i = 0; i <= 8; i++) {
-    let temp = i + 1;
-    result[i] = document.querySelector(`#btn${i+1}`);
+  for (let i = 0; i <= 9; i++) {
+    let temp = i;
+    result[i] = document.querySelector(`#btn${i}`);
   
     result[i].addEventListener('click', function(onClick) {
       considerInput(temp);
@@ -31,7 +32,7 @@ function addEventsToButtons() {
     });
   }
 
-  for (let i = 9; i <= 14; i++) {
+  for (let i = 10; i <= 15; i++) {
     let temp = result[i];
     result[i] = document.querySelector(`#${result[i]}`)
 
