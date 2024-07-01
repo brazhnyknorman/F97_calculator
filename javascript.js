@@ -89,16 +89,10 @@ function updateDisplay(newElement) {
       console.log('more on secondNum');
     }
     else {
-      evaluate(operator);
+      operate(firstNum, operator, secondNum);
       console.log('evaluate!');
     }
   }
-
-  function evaluate(mode) {
-    
-  }
-
-
 
   displayText.push(newElement);
 
@@ -107,7 +101,23 @@ function updateDisplay(newElement) {
   displayScreen.textContent = temp;
 }
 
-function operate(a, operator, b) {
+function operate(a, mode, b) {
+
+  switch (mode) {
+    case 'add':
+      const result = add(a, b)
+      break;
+    case 'subtract':
+      break;
+    case 'multiply':
+      break;
+    case 'divide':
+      break;
+  
+    default:
+      break;
+  }
+
   function add(a, b) {
     let sum = a + b;
   
