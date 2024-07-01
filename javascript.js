@@ -77,17 +77,25 @@ function updateDisplay(newElement) {
       console.log('init operator');
     }
   }
-  else if (!(firstNum == null) && !(operator == null) && inputIsNum) {
-    if (secondNum == null) {
+  else if (!(firstNum == null) && !(operator == null)) {
+    if (secondNum == null && inputIsNum) {
       secondNum = newElement;
       console.log(secondNum);
       console.log('init secondNum');
     }
-    else {
+    else if (inputIsNum) {
       secondNum = "".concat(secondNum, newElement);
       console.log(secondNum);
       console.log('more on secondNum');
     }
+    else {
+      evaluate(newElement);
+      console.log('evaluate!');
+    }
+  }
+
+  function evaluate(mode) {
+
   }
 
 
