@@ -89,13 +89,13 @@ function updateDisplay(newElement) {
       console.log('more on secondNum');
     }
     else {
-      evaluate(newElement);
+      evaluate(operator);
       console.log('evaluate!');
     }
   }
 
   function evaluate(mode) {
-
+    
   }
 
 
