@@ -27,7 +27,7 @@ function addEventsToButtons() {
   
     result[i].addEventListener('click', function(onClick) {
       considerInput(temp);
-      updateDisplay(temp);
+      updateDisplay();
     });
   }
 
@@ -38,12 +38,12 @@ function addEventsToButtons() {
     if (temp === "clear") {
       result[i].addEventListener('click', function(onClick) {
         clear();
-        updateDisplay(temp);
+        updateDisplay();
       })
     } else {
       result[i].addEventListener('click', function(onClick) {
         considerInput(temp);
-        updateDisplay(temp);
+        updateDisplay();
       })
     }
   }
@@ -59,7 +59,7 @@ function clear() {
   displayScreen.textContent = "0";
 }
 
-function updateDisplay(newElement) {
+function updateDisplay() {
   let temp = "" + firstNum + " " + operator + " " + secondNum;
   temp = temp.replace(/ null/g, '');
 
@@ -87,7 +87,10 @@ function considerInput(newElement) {
       console.log('init operator');
 
       if (operator === 'equals') {
-        
+        operate(firstNum, operator, null);
+
+        operator = null;
+        updateDisplay();
       }
     }
   }
@@ -104,7 +107,12 @@ function considerInput(newElement) {
     }
     else {
       operate(firstNum, operator, secondNum);
-      operator = newElement;
+      
+      if (newElement === 'equals') {
+        operator = null;
+      } else {
+        operator = newElement;
+      }
 
       console.log("firstNum: " + firstNum);
       console.log("operator: " + operator);
@@ -134,7 +142,9 @@ function operate(a, mode, b) {
       const quotient = divide(a, b);
       result = quotient;
       break;
-  
+    case 'equals':
+      result = a;
+      break;
     default:
       break;
   }
