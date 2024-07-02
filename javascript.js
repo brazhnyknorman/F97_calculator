@@ -159,10 +159,18 @@ function operate(a, mode, b) {
   adjustDisplay(result);
 
   function adjustDisplay(result) {
-    firstNum = result;
+    firstNum = rounding(result);
     /* operator updated in line 100*/
     secondNum = null;
     displayText = [];
+  }
+
+  function rounding(input) {
+    if (input == input.toFixed(2)) {
+      return input
+    }
+
+    return input.toFixed(2);
   }
 
   function add(a, b) {
