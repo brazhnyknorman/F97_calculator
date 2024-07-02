@@ -8,7 +8,7 @@ const body = document.querySelector("body");
 const buttons = addEventsToButtons();
 
 const displayScreen = document.querySelector(".display");
-const initialDisplay = "Please Enter A Calculation";
+const initialDisplay = "NaN";
 displayScreen.textContent = initialDisplay;
 
 /* FUNCTIONS */
@@ -58,7 +58,7 @@ function clear() {
   operator = null;
   secondNum = null;
   displayText = [];
-  displayScreen.textContent = "0";
+  displayScreen.textContent = "NaN";
 }
 
 function updateDisplay() {
@@ -156,7 +156,11 @@ function operate(a, mode, b) {
       break;
   }
 
-  adjustDisplay(result);
+  if (divideByZero == false) {
+    adjustDisplay(result) ;
+  } else {
+    clear();
+  }
 
   function adjustDisplay(result) {
     firstNum = rounding(result);

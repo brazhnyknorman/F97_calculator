@@ -1,0 +1,53 @@
+body {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+}
+
+h2 {
+  border: 2px solid rgb(0, 0, 0);
+  padding: 15px;
+  background-color: aliceblue;
+}
+
+.container {
+  border: 2px solid rgb(0, 0, 0);
+  padding: 15px;
+  background-color: brown;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Space rows evenly */
+  
+  width: 350px;
+  height: 350px;
+}
+
+.row {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+}
+
+button {
+  border-radius: 2px;
+  border: 1px solid rgb(5, 5, 5);
+  background-color:rgb(211, 238, 228);
+  
+  flex: 1;
+
+  margin-right: -3px; /* Adjust the margin to overlap the border */
+  margin-top: -3px;
+}
+
+.operator {
+  border-radius: 2px;
+  border: 1px solid rgb(5, 5, 5);
+  background-color:rgb(97, 212, 170);
+}
+
+button:hover {
+  background-color: rgb(187, 245, 226);
+}
