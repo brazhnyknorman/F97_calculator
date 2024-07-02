@@ -128,6 +128,8 @@ function operate(a, mode, b) {
   switch (mode) {
     case 'add':
       const sum = add(a, b);
+      console.log(a);
+      console.log(b);
       result = sum;
       break;
     case 'subtract':
@@ -164,6 +166,8 @@ function operate(a, mode, b) {
   }
 
   function add(a, b) {
+    a = a * 1;
+    b = b * 1;
     let sum = a + b;
   
     return sum;
