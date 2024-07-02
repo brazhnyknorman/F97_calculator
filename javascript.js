@@ -1,7 +1,6 @@
 let firstNum = null;
 let secondNum = null;
 let operator = null;
-let displayText = [];
 let divideByZero = false;
 
 const body = document.querySelector("body");
@@ -57,7 +56,6 @@ function clear() {
   firstNum = null;
   operator = null;
   secondNum = null;
-  displayText = [];
   displayScreen.textContent = "NaN";
 }
 
@@ -109,10 +107,6 @@ function considerInput(newElement) {
       } else {
         operator = newElement;
       }
-
-      console.log("firstNum: " + firstNum);
-      console.log("operator: " + operator);
-      console.log("secondNum: " + secondNum);
     }
   }
 
@@ -164,17 +158,20 @@ function operate(a, mode, b) {
 
   function adjustDisplay(result) {
     firstNum = rounding(result);
-    /* operator updated in line 100*/
+    /* operator updated in line 110*/
     secondNum = null;
-    displayText = [];
   }
 
   function rounding(input) {
-    if (input == input.toFixed(2)) {
-      return input
+    if (!(mode == 'equals')) {
+      if (input == input.toFixed(2)) {
+        return input
+      }
+  
+      return input.toFixed(2); 
     }
 
-    return input.toFixed(2);
+    return input;
   }
 
   function add(a, b) {
