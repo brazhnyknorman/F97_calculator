@@ -44,12 +44,16 @@ button {
   margin-top: -3px;
 }
 
+button:hover {
+  background-color: rgb(187, 245, 226);
+}
+
 .operator {
   border-radius: 2px;
   border: 1px solid rgb(5, 5, 5);
   background-color:rgb(97, 212, 170);
 }
 
-button:hover {
-  background-color: rgb(187, 245, 226);
-}
+.operator:hover {
+  background-color: rgb(65, 212, 158);
+};
